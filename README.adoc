@@ -1,65 +1,54 @@
-//
-// Copyright (c) 2016-2017 Contributors to the Eclipse Foundation
-//
-// See the NOTICE file(s) distributed with this work for additional
-// information regarding copyright ownership.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
-image:https://badges.gitter.im/eclipse/microprofile-config.svg[link="https://gitter.im/eclipse/microprofile-config"]
-image:https://img.shields.io/maven-central/v/org.eclipse.microprofile.config/microprofile-config-api.svg[link="http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.eclipse.microprofile.config%22%20AND%20a%3A%22microprofile-config-api%22"]
-image:https://javadoc.io/badge/org.eclipse.microprofile.config/microprofile-config-api.svg[ link="https://javadoc.io/doc/org.eclipse.microprofile.config/microprofile-config-api"]
-
 # Configuration for MicroProfile (MicroProfile Config)
 
-MicroProfile Config Feature
+* MicroProfile Config Feature
+    ** allows
+        *** 👀AFTER configured values changed, they can be pick up IMMEDIATELY👀
+            **** -> NO need for restarting the application
+            **** use cases
+                ***** microservices / run | cloud environment
+    ** provides
+        *** specified API
+        *** TCK (TODO: ❓)
+        *** documentation
 
 == Rationale
 
-The majority of applications need to be configured based on a running environment.
-It must be possible to modify configuration data from outside an application so that the application itself does not need to be repackaged.
+* 👀MOST of the applications need to be configured -- based on a -- running environment👀
+    ** == POSSIBLE to modify configuration data -- from -- outside an application
 
-The configuration data can come from different locations and in different formats (e.g. system properties, system environment variables, .properties, .xml, datasource).
-We call these config locations ConfigSources.
-If the same property is defined in multiple ConfigSources, we apply a policy to specify which one of the values will effectively be used.
+* configuration data types
+    ** system properties,
+    ** system environment variables,
+    ** .properties
+    ** .xml
+    ** datasource
 
-Under some circumstances, some data sources may change dynamically.
-The changed values should be fed into the client without the need for restarting the application.
-This requirement is particularly important for microservices running in a cloud environment.
-The MicroProfile Config approach allows to pick up configured values immediately after they got changed.
+* ConfigSources
+    ** := config locations
+    ** 👀EXIST policy / if SAME property is defined | MULTIPLE ConfigSources -> specify which one takes priority👀
 
-== Influences and History
+== Influences
 
-There are a number of Config projects which directly influenced this proposal and acted as basis for this API, such as:
-
-* DeltaSpike Config (http://deltaspike.apache.org/documentation/configuration.html)
-* Extracted parts of DeltaSpike Config (https://github.com/struberg/javaConfig/)
-* Apache Tamaya (http://tamaya.incubator.apache.org/)
+* OTHER Config projects / inspired this
+    ** DeltaSpike Config (http://deltaspike.apache.org/documentation/configuration.html)
+    ** Extracted parts of DeltaSpike Config (https://github.com/struberg/javaConfig/)
+    ** Apache Tamaya (http://tamaya.incubator.apache.org/)
 
 == Implementations
 
-Microprofile Config does not contain an implementation itself but only provides the specified API, a TCK and documentation.
+* Microprofile Config
+    ** ❌NOT contain an implementation itself❌
 
-The following Implementations are available 
-
-* Apache Geronimo Config (https://svn.apache.org/repos/asf/geronimo/components/config/trunk)
-* WebSphere Liberty 2017 March-June Beta so far (https://developer.ibm.com/wasdev/)
-* Payara Server 173 and Payara Micro 173 (https://docs.payara.fish/documentation/microprofile/config.html)
-* WildFly & Thorntail (https://github.com/smallrye/smallrye-config)
-* https://microbean.github.io/microbean-microprofile-config/[microBean(TM) MicroProfile Config]
+* EXISTING TP Implementations
+    ** Apache Geronimo Config (https://svn.apache.org/repos/asf/geronimo/components/config/trunk)
+    ** WebSphere Liberty 2017 March-June Beta so far (https://developer.ibm.com/wasdev/)
+    ** Payara Server 173 and Payara Micro 173 (https://docs.payara.fish/documentation/microprofile/config.html)
+    ** WildFly & Thorntail (https://github.com/smallrye/smallrye-config)
+    ** https://microbean.github.io/microbean-microprofile-config/[microBean(TM) MicroProfile Config]
 
 == Design
 
+* TODO:
 The current configuration of an application can be accessed via _ConfigProvider#getConfig()_.
 
 A _Config_ consists of the information collected from the registered _org.eclipse.microprofile.config.spi.ConfigSource_ s.
@@ -85,7 +74,3 @@ An example would be a ConfigSource which gets the configured values from a share
 The whole MicroProfile config project can be built via Apache Maven
 
 	$> mvn clean install
-
-== Contributing
-
-Do you want to contribute to this project? link:CONTRIBUTING.adoc[Find out how you can help here].
